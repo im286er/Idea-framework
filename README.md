@@ -1,4 +1,4 @@
-# 欢迎使用 Idea 超轻量级PHP框架
+<h1> Idea framework 超轻量级框架<h1>
 
 <h3>Idea核心理念</h3>
 * 用户体验目标，简单到极致！
