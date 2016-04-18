@@ -12,8 +12,7 @@
 * 内置模板引擎，具有缓存、编译、语法机制。
 * 数据层基于PDO，模型对象单例实现，CURD更贴近原生，无须深入学习框架
 
-**Framework Version：V0.1**
-** Framework Version：V0.1 **
+#### 当前版本：V1.0
 
 文档地址：http://www.kancloud.cn/yunfei_z/framework
 
