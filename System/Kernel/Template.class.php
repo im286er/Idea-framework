@@ -134,6 +134,22 @@ class Template{
             }
         }
     }
+    private function parseIf(){
+        $pattenIf = '/('.$this->leftTag.')if\s+\$([\w]+)('.$this->rightTag.')/';
+        $pattenEndIf = '/('.$this->leftTag.')\/if('.$this->rightTag.')/';
+        $pattenElse = '/('.$this->leftTag.')else('.$this->rightTag.')/';
+        if (preg_match($pattenIf,$this->templateContent)) {
+            if (preg_match($pattenEndIf,$this->templateContent)) {
+                $this->templateContent = preg_replace($pattenIf,"<?php if (\$this->vars['$2']) {?>",$this->templateContent);
+                $this->templateContent = preg_replace($pattenEndIf,"<?php } ?>",$this->templateContent);
+                if (preg_match($pattenElse,$this->templateContent)) {
+                    $this->templateContent = preg_replace($pattenElse,"<?php } else { ?>",$this->templateContent);
+                }
+            } else {
+                exit('ERROR：if语句没有关闭！');
+            }
+        }
+    }
     //解析include语句
     private function parseInclude() {
         $patten = '/\{include\s+file=\"(.+)\"\}/';
