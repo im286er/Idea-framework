@@ -32,7 +32,7 @@ class ValidateCode{
 	 * @param integer $codeNum  验证码字符个数
 	 * @param integer $codeType 验证码类型：0(数字) 1(数字+小写字母) 2(数字+大小写字母)
 	 */
-	function __construct($fontType=3,$fontSize=20,$width=100,$height=40,$codeNum=4,$codeType=1){
+	function __construct($fontType=5,$fontSize=20,$width=100,$height=40,$codeNum=4,$codeType=1){
 		$this->width    = $width;
 		$this->height   = $height;
 		$this->codeNum  = $codeNum;
@@ -125,7 +125,7 @@ class ValidateCode{
 	 * @return string 验证码内容
 	 */
 	public function getCode(){
-		//$this->createCode();
+		$this->createCode();
 		return strtolower($this->codeCheck);
 	}
  }
