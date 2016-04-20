@@ -12,16 +12,12 @@ class Template{
     private static $instance       = null;             //模板实例
     private        $templateFile   = '';               //当前模板文件名
     private        $compileFile    = '';               //当前编译文件名
-    private        $cacheFile      = '';               //当前缓存文件名
     private        $vars           = array();          //内部使用的临时变量
     public         $templatePath   = '';       //定义模板文件存放的目录  
     public         $compilePath    = '';        //定义通过模板引擎组合后文件存放目录
-    public         $cachePath      = 'cache';          //定义通过模板引擎组合后文件存放目录
     public         $includePath    = '';              //定义通过模板引擎组合后文件存放目录
     public         $leftTag        = '{{';             //在模板中嵌入动态数据变量的左定界符号
     public         $rightTag       = '}}';             //在模板中嵌入动态数据变量的右定界符号
-    public         $openCache      = false;             //是否开启缓存
-    public         $cacheLifeTime  = 1;               //缓存文件有效时间
     public         $templateSuffix = '.html';          //模板文件后缀名
     //私有的构造函数, 不允许直接创建对象
     private function __construct(){}
@@ -41,11 +37,12 @@ class Template{
         if (isset($var)&&!empty($var)) {
             $this->vars[$var]=$value;
         }else{
-            echo "请设置模板变量";
+            echo "<h2>Error：请设置模板变量</h2>错误信息：请检查方法assign();是否设置设置了变量！<br>";
             exit;
         }
         if(!isset($value)){
-            echo "请设置模板变量值";
+            "<h2>Error：请设置模板变量值</h2>错误信息：请检查方法assign();是否设置设置了变量值！<br>";
+            exit;
         }
     }
     public function display($file){
@@ -67,22 +64,7 @@ class Template{
         }
         //编译文件
         $this->compileFile=$this->compilePath.'/'.md5($file).'_'.str_replace('/', '_', $file).'.php';
-        //缓存时间
-        $this->cacheLifeTime = $this->cacheLifeTime * 60;
-        //缓存文件
-        $this->cacheFile=$this->cachePath.'/'.md5($file).'_'.str_replace('/', '_', $file).'.html';
-        //如果开启了缓存
-        if ($this->openCache) {
-            //缓存文件和编译文件都要存在
-            if (file_exists($this->cacheFile) && file_exists($this->compileFile)) {
-                //判断模板文件是否修改过，判断编译文件是否修改过
-                if (filemtime($this->compileFile) >= filemtime($this->templateFile) && filemtime($this->cacheFile) + $this->cacheLifeTime >= filemtime($this->compileFile)) {
-                    //载入缓存文件
-                    include $this->cacheFile;
-                    return;
-                }
-            }
-        }
+
         //编译文件内容
         $this->templateContent=file_get_contents($this->templateFile);
         //如果编译文件不存在或模板文件被修改重新编译 
@@ -93,11 +75,6 @@ class Template{
         }
         //载入编译文件
         include $this->compileFile;
-        if ($this->openCache) {
-            file_put_contents($this->cacheFile,ob_get_contents());
-            ob_end_clean();
-            include $this->cacheFile;
-        }
     }
     /**
      * 初始化缓存目录
@@ -106,9 +83,6 @@ class Template{
     private function initDir($file){
         if(!is_readable($this->compilePath)){
             is_file($this->compilePath) or mkdir($this->compilePath,755,true); 
-        }
-        if(!is_readable($this->cachePath)){
-            is_file($this->cachePath) or mkdir($this->cachePath,755,true); 
         }
     }
     //解析普通变量
