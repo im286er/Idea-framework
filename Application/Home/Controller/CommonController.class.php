@@ -21,10 +21,7 @@ class CommonController extends Controller{
         $this->tp->rightTag  = '}}';  
         $this->tp->templatePath   = APP_PATH  . '/' . MODULE . '/View/Default';     //定义模板文件存放的目录  
         $this->tp->compilePath    = ROOT_PATH . 'Cache/' .MODULE. '/Compile';      //定义通过模板编译文件存放目录
-        $this->tp->cachePath      = ROOT_PATH . 'Cache/' .MODULE. '/Cache';        //定义通过模板缓存文件存放目录
         $this->tp->includePath    = APP_PATH . '/' . MODULE . '/View/Default';     //定义模板包含函数路径
         $this->tp->templateSuffix = '.html';                    //模板文件后缀
-        $this->tp->openCache     = false;                       //是否开启缓存
-        $this->tp->cacheLifeTime  = 1;
     }
 }
