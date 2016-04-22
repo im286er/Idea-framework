@@ -4,6 +4,7 @@
  */
 class CommonController extends Controller{
     public function __construct(){
+        parent::__construct();
         //实例化内置模板引擎
         $this->tp= Template::GetInstance();
         $this->setTemplate();
