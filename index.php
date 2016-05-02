@@ -8,4 +8,4 @@
  * @Datetime	2016/03/21 23:06:58
  * @Version		1.0
  */
-require "./System/init.php";		//加载框架
+require "./System/Init.php";		//加载框架
