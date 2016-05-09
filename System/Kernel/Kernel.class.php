@@ -39,7 +39,6 @@ class Kernel{
 			'Controller' => SYS_PATH . '/Kernel/Controller.class.php',
 			'Model'      => SYS_PATH . '/Kernel/Model.class.php',
 			'Template'   => SYS_PATH . '/Kernel/Template.class.php',
-			'View'       => SYS_PATH . '/Kernel/View.class.php',
 			);
 		return $class_list;
     }	
