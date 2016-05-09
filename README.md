@@ -17,4 +17,4 @@
 
 电子邮箱：20874823@qq.com
 
-作者主页：http://ideait.net(备案中，暂不开放...)
+作者主页：http://ideait.net
