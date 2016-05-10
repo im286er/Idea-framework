@@ -42,7 +42,7 @@ class Router {
             $current_module = isset($_GET['m']) ? $_GET['m'] : $this->config['DEFAULT_MODULE'];
             define('MODULE', ucwords($current_module));
 
-            define('__MODULE__',__ROOT__ .ENTRANCE . '?m='. MODULE);
+            define('__MODULE__',__ROOT__ . '?m='. MODULE);
             //如果用户没有定义控制器，则默认Index
             if (!isset($this->config['DEFAULT_CONTROLLER'])) {
                 $this->config['DEFAULT_CONTROLLER'] = 'Index';
@@ -51,7 +51,7 @@ class Router {
             $current_controller = isset($_GET['c']) ? $_GET['c'] : $this->config['DEFAULT_CONTROLLER'];
             //当前控制器
             define('CONTROLLER', ucwords($current_controller));
-            define('__CONTROLLER__',__ROOT__ .ENTRANCE . '?m='. MODULE.'&c='.CONTROLLER);
+            define('__CONTROLLER__',__ROOT__ . '?m='. MODULE.'&c='.CONTROLLER);
             
             //方法动作
             if (!isset($this->config['DEFAULT_ACTION'])) {
@@ -59,7 +59,7 @@ class Router {
             }
             $current_action = isset($_GET['a']) ? $_GET['a'] : $this->config['DEFAULT_ACTION'];
             define('ACTION', $current_action);
-            define('__ACTION__', __ROOT__ . ENTRANCE . '?m='. MODULE . '&c=' . CONTROLLER .'&a=' .ACTION);
+            define('__ACTION__', __ROOT__  . '?m='. MODULE . '&c=' . CONTROLLER .'&a=' .ACTION);
             //模块文件夹
             $moduleDir=APP_PATH.'/'.MODULE;
             //控制器文件
