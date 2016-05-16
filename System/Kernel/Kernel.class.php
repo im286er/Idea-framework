@@ -36,7 +36,7 @@ class Kernel{
     private static function _getClassList(){
     	$class_list=array(
 			'Router'     => SYS_PATH . '/Kernel/Router.class.php',
-			'Singleton'  => SYS_PATH . '/kernel/Singleton.class.php',
+			'Singleton'  => SYS_PATH . '/Kernel/Singleton.class.php',
 			'PDODB'      => SYS_PATH . '/Kernel/PDODB.class.php',
 			'Controller' => SYS_PATH . '/Kernel/Controller.class.php',
 			'Model'      => SYS_PATH . '/Kernel/Model.class.php',

@@ -80,9 +80,9 @@ class Template{
      * 初始化缓存目录
      * @param  string $file 模板文件名
      */
-    private function initDir($file){
+    private function initDir(){
         if(!is_readable($this->compilePath)){
-            is_file($this->compilePath) or mkdir($this->compilePath,755,true); 
+            is_dir($this->compilePath) or mkdir($this->compilePath,755,true); 
         }
     }
     //解析普通变量
