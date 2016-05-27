@@ -109,6 +109,10 @@ class Router {
                 $urlModule     = array_shift($paths);
                 $urlController = array_shift($paths);
                 $urlAction     = array_shift($paths);
+                //pathinfo传值操作
+                for($i=0; $i<count($paths); $i+=2){
+                    $_GET[$paths[$i]]=$paths[$i+1];
+                }
 
             }
             if (!isset($this->config['DEFAULT_MODULE'])) {
